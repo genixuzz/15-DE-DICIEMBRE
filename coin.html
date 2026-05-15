@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>15DiciembreCoin · Instituto Tecnológico 15 de Diciembre</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--azul:#0a1628;--azul-med:#0e2045;--acento:#3b82f6;--acento2:#60a5fa;--oro:#f59e0b;--blanco:#f8fafc;--gris:#94a3b8;--card:rgba(255,255,255,0.05);--border:rgba(255,255,255,0.1);}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--azul);color:var(--blanco);font-family:'DM Sans',sans-serif;overflow-x:hidden;}
+    header{position:sticky;top:0;z-index:200;background:rgba(10,22,40,0.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:.85rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
+    .logo-area{display:flex;align-items:center;gap:.8rem;text-decoration:none;flex-shrink:0;}
+    .logo-escudo{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--acento),var(--oro));display:flex;align-items:center;justify-content:center;font-size:1.3rem;}
+    .logo-text h1{font-family:'Syne',sans-serif;font-size:.92rem;font-weight:800;letter-spacing:.04em;color:var(--blanco);}
+    .logo-text span{font-size:.68rem;color:var(--gris);}
+    nav{display:flex;gap:.25rem;flex-wrap:wrap;}
+    nav a{color:var(--gris);font-family:'DM Sans',sans-serif;font-size:.82rem;padding:.38rem .75rem;border-radius:8px;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:.35rem;}
+    nav a:hover,nav a.active{background:rgba(59,130,246,0.18);color:var(--blanco);}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes pulse{0%,100%{box-shadow:0 0 60px rgba(245,158,11,0.4),0 0 120px rgba(245,158,11,0.15);}50%{box-shadow:0 0 80px rgba(245,158,11,0.6),0 0 160px rgba(245,158,11,0.25);}}
+    .page-content{animation:fadeIn .3s ease;}
+    .sec{padding:4rem 5rem;}
+    .sec-title{font-family:'Syne',sans-serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:800;margin-bottom:.4rem;}
+    .sec-sub{color:var(--gris);font-size:.9rem;margin-bottom:2rem;}
+    .sec-line{width:3rem;height:3px;background:linear-gradient(90deg,var(--acento),var(--oro));border-radius:99px;margin-bottom:1.8rem;}
+    .coin-card{background:linear-gradient(135deg,rgba(245,158,11,0.12),rgba(59,130,246,0.08));border:1px solid rgba(245,158,11,0.25);border-radius:22px;padding:3rem;display:grid;grid-template-columns:auto 1fr;gap:3rem;align-items:center;}
+    .coin-circle{width:150px;height:150px;border-radius:50%;background:linear-gradient(135deg,var(--oro),#d97706);display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 0 60px rgba(245,158,11,0.4);animation:pulse 3s ease-in-out infinite;flex-shrink:0;}
+    .coin-circle span{font-size:2.5rem;}
+    .coin-circle small{font-size:.6rem;color:rgba(0,0,0,0.55);font-weight:700;letter-spacing:.1em;}
+    .coin-info h3{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;margin-bottom:.8rem;}
+    .coin-info h3 em{color:var(--oro);font-style:normal;}
+    .coin-info p{color:var(--gris);line-height:1.7;margin-bottom:1.5rem;}
+    .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.7rem 1.4rem;border-radius:10px;font-size:.88rem;font-weight:500;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;transition:all .2s;text-decoration:none;}
+    .btn-oro{background:linear-gradient(135deg,var(--oro),#d97706);color:#000;font-weight:600;} .btn-oro:hover{transform:translateY(-2px);}
+    footer{text-align:center;padding:1.8rem;border-top:1px solid var(--border);color:var(--gris);font-size:.78rem;}
+    footer a{color:var(--gris);text-decoration:none;}
+    @media(max-width:900px){.sec{padding:3rem 1.5rem;}.coin-card{grid-template-columns:1fr;text-align:center;}.coin-circle{margin:0 auto;}}
+  </style>
+</head>
+<body>
+
+<header>
+  <a class="logo-area" href="index.html">
+    <div class="logo-escudo">🏛️</div>
+    <div class="logo-text">
+      <h1>Instituto Tecnológico</h1>
+      <span>15 de Diciembre</span>
+    </div>
+  </a>
+  <nav>
+    <a href="index.html">🏠 Inicio</a>
+    <a href="menu.html">🍽️ Menú</a>
+    <a href="horarios.html">📋 Horarios</a>
+    <a href="surtidas.html">🎒 Salidas</a>
+    <a href="calendario.html">📅 Calendario</a>
+    <a href="coin.html" class="active">🪙 15DiciembreCoin</a>
+    <a href="contacto.html">📬 Contacto</a>
+  </nav>
+</header>
+
+<div class="page-content">
+  <div class="sec">
+    <p class="sec-title">🪙 15DiciembreCoin</p>
+    <div class="sec-line"></div>
+    <p class="sec-sub">La criptomoneda oficial del Instituto Tecnológico 15 de Diciembre</p>
+    <div class="coin-card">
+      <div class="coin-circle">
+        <span>🪙</span>
+        <small>15DIC COIN</small>
+      </div>
+      <div class="coin-info">
+        <h3>Se ha creado la <em>15DiciembreCoin</em></h3>
+        <p>La <strong style="color:var(--blanco)">15DiciembreCoin</strong> es la criptomoneda oficial del instituto, creada por y para la comunidad educativa del IES 15 de Diciembre. Está diseñada para ser utilizada en el entorno escolar: podrás emplearla en actividades del centro, eventos, y mucho más. Es una iniciativa pionera que acerca el mundo de la tecnología blockchain a nuestros alumnos de una forma práctica y real.</p>
+        <a href="https://pump.fun/coin/4xsCiE66p8qSnEzss3CMS1sfwqR1EvCuasSzPsFfpump" class="btn btn-oro" target="_blank" rel="noopener">🔗 Comprar / Ver en la plataforma →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>© 2026 Instituto Tecnológico 15 de Diciembre · <a href="mailto:ies15diciembre@gmail.com">ies15diciembre@gmail.com</a></footer>
+
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contacto · Instituto Tecnológico 15 de Diciembre</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--azul:#0a1628;--azul-med:#0e2045;--acento:#3b82f6;--acento2:#60a5fa;--oro:#f59e0b;--blanco:#f8fafc;--gris:#94a3b8;--card:rgba(255,255,255,0.05);--border:rgba(255,255,255,0.1);}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--azul);color:var(--blanco);font-family:'DM Sans',sans-serif;overflow-x:hidden;}
+    header{position:sticky;top:0;z-index:200;background:rgba(10,22,40,0.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:.85rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
+    .logo-area{display:flex;align-items:center;gap:.8rem;text-decoration:none;flex-shrink:0;}
+    .logo-escudo{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--acento),var(--oro));display:flex;align-items:center;justify-content:center;font-size:1.3rem;}
+    .logo-text h1{font-family:'Syne',sans-serif;font-size:.92rem;font-weight:800;letter-spacing:.04em;color:var(--blanco);}
+    .logo-text span{font-size:.68rem;color:var(--gris);}
+    nav{display:flex;gap:.25rem;flex-wrap:wrap;}
+    nav a{color:var(--gris);font-family:'DM Sans',sans-serif;font-size:.82rem;padding:.38rem .75rem;border-radius:8px;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:.35rem;}
+    nav a:hover,nav a.active{background:rgba(59,130,246,0.18);color:var(--blanco);}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+    .page-content{animation:fadeIn .3s ease;}
+    .sec{padding:4rem 5rem;}
+    .sec-title{font-family:'Syne',sans-serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:800;margin-bottom:.4rem;}
+    .sec-sub{color:var(--gris);font-size:.9rem;margin-bottom:2rem;}
+    .sec-line{width:3rem;height:3px;background:linear-gradient(90deg,var(--acento),var(--oro));border-radius:99px;margin-bottom:1.8rem;}
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;}
+    .contact-items{display:flex;flex-direction:column;gap:.8rem;}
+    .contact-item{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.9rem 1.1rem;display:flex;align-items:center;gap:.8rem;}
+    .contact-item a{color:var(--blanco);text-decoration:none;font-size:.88rem;} .contact-item a:hover{color:var(--acento2);}
+    .contact-item .val{color:var(--blanco);font-size:.88rem;}
+    .rrss-title{font-family:'Syne',sans-serif;font-weight:700;margin-bottom:.9rem;}
+    .rrss-grid{display:flex;flex-wrap:wrap;gap:.7rem;}
+    .rrss-btn{display:flex;align-items:center;gap:.5rem;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:.65rem 1rem;text-decoration:none;color:var(--blanco);font-size:.82rem;transition:all .2s;}
+    .rrss-btn:hover{background:rgba(59,130,246,0.15);border-color:rgba(59,130,246,0.4);transform:translateY(-2px);}
+    .rrss-btn.insta:hover{background:rgba(228,64,95,0.15);border-color:rgba(228,64,95,0.4);}
+    footer{text-align:center;padding:1.8rem;border-top:1px solid var(--border);color:var(--gris);font-size:.78rem;}
+    footer a{color:var(--gris);text-decoration:none;}
+    @media(max-width:900px){.sec{padding:3rem 1.5rem;}.contact-grid{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+
+<header>
+  <a class="logo-area" href="index.html">
+    <div class="logo-escudo">🏛️</div>
+    <div class="logo-text">
+      <h1>Instituto Tecnológico</h1>
+      <span>15 de Diciembre</span>
+    </div>
+  </a>
+  <nav>
+    <a href="index.html">🏠 Inicio</a>
+    <a href="menu.html">🍽️ Menú</a>
+    <a href="horarios.html">📋 Horarios</a>
+    <a href="surtidas.html">🎒 Sortides</a>
+    <a href="calendario.html">📅 Calendario</a>
+    <a href="coin.html">🪙 15DiciembreCoin</a>
+    <a href="contacto.html" class="active">📬 Contacto</a>
+  </nav>
+</header>
+
+<div class="page-content">
+  <div class="sec">
+    <p class="sec-title">📬 Contacto</p>
+    <div class="sec-line"></div>
+    <p class="sec-sub">¿Tienes alguna pregunta, sugerencia o necesitas ponerte en contacto con el instituto? Estamos aquí para ayudarte. Puedes escribirnos o llamarnos en horario lectivo.</p>
+    <div class="contact-grid">
+      <div class="contact-items">
+        <div class="contact-item">
+          <span>📧</span>
+          <a href="mailto:ies15diciembre@gmail.com">ies15diciembre@gmail.com</a>
+        </div>
+        <div class="contact-item">
+          <span>📞</span>
+          <span class="val">666 666 666</span>
+        </div>
+        <div class="contact-item">
+          <span>📍</span>
+          <span class="val">Instituto Tecnológico 15 de Diciembre</span>
+        </div>
+        <div class="contact-item">
+          <span>🕐</span>
+          <span class="val">Lunes a Viernes · 8:00 – 15:00h</span>
+        </div>
+      </div>
+      <div>
+        <p class="rrss-title">Síguenos en redes sociales</p>
+        <div class="rrss-grid">
+          <a href="https://instagram.com/ies15diciembre" target="_blank" class="rrss-btn insta">📸 @ies15diciembre</a>
+          <a href="https://x.com" target="_blank" class="rrss-btn">🐦 Twitter / X</a>
+          <a href="https://facebook.com" target="_blank" class="rrss-btn">📘 Facebook</a>
+          <a href="https://youtube.com" target="_blank" class="rrss-btn">▶️ YouTube</a>
+          <a href="https://tiktok.com" target="_blank" class="rrss-btn">🎵 TikTok</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>© 2026 Instituto Tecnológico 15 de Diciembre · <a href="mailto:ies15diciembre@gmail.com">ies15diciembre@gmail.com</a></footer>
+
+</body>
+</html>

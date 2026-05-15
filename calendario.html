@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calendario · Instituto Tecnológico 15 de Diciembre</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--azul:#0a1628;--azul-med:#0e2045;--acento:#3b82f6;--acento2:#60a5fa;--oro:#f59e0b;--blanco:#f8fafc;--gris:#94a3b8;--card:rgba(255,255,255,0.05);--border:rgba(255,255,255,0.1);}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--azul);color:var(--blanco);font-family:'DM Sans',sans-serif;overflow-x:hidden;}
+    header{position:sticky;top:0;z-index:200;background:rgba(10,22,40,0.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:.85rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
+    .logo-area{display:flex;align-items:center;gap:.8rem;text-decoration:none;flex-shrink:0;}
+    .logo-escudo{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--acento),var(--oro));display:flex;align-items:center;justify-content:center;font-size:1.3rem;}
+    .logo-text h1{font-family:'Syne',sans-serif;font-size:.92rem;font-weight:800;letter-spacing:.04em;color:var(--blanco);}
+    .logo-text span{font-size:.68rem;color:var(--gris);}
+    nav{display:flex;gap:.25rem;flex-wrap:wrap;}
+    nav a{color:var(--gris);font-family:'DM Sans',sans-serif;font-size:.82rem;padding:.38rem .75rem;border-radius:8px;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:.35rem;}
+    nav a:hover,nav a.active{background:rgba(59,130,246,0.18);color:var(--blanco);}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+    .page-content{animation:fadeIn .3s ease;}
+    .sec{padding:4rem 5rem;}
+    .sec-title{font-family:'Syne',sans-serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:800;margin-bottom:.4rem;}
+    .sec-sub{color:var(--gris);font-size:.9rem;margin-bottom:2rem;}
+    .sec-line{width:3rem;height:3px;background:linear-gradient(90deg,var(--acento),var(--oro));border-radius:99px;margin-bottom:1.8rem;}
+    .cal-mes-nav{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;}
+    .cal-mes-nav button{background:var(--card);border:1px solid var(--border);color:var(--blanco);border-radius:8px;padding:.38rem .85rem;cursor:pointer;font-size:1rem;font-family:'DM Sans',sans-serif;transition:background .2s;}
+    .cal-mes-nav button:hover{background:rgba(59,130,246,0.2);}
+    .cal-mes-nav span{font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;min-width:140px;text-align:center;}
+    .cal-head{display:grid;grid-template-columns:repeat(7,1fr);gap:.4rem;margin-bottom:.3rem;}
+    .cal-head span{text-align:center;font-size:.7rem;color:var(--gris);text-transform:uppercase;letter-spacing:.06em;padding:.3rem 0;}
+    .cal-grid-inner{display:grid;grid-template-columns:repeat(7,1fr);gap:.4rem;}
+    .cal-day{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:9px;font-size:.88rem;background:var(--card);border:1px solid var(--border);cursor:default;transition:background .2s;}
+    .cal-day.empty{background:transparent;border-color:transparent;}
+    .cal-day.today{background:var(--acento);border-color:var(--acento);color:#fff;font-weight:700;box-shadow:0 0 16px rgba(59,130,246,0.5);}
+    .cal-day.evento{background:rgba(245,158,11,0.15);border-color:rgba(245,158,11,0.4);color:var(--oro);cursor:pointer;}
+    .cal-day.evento:hover{background:rgba(245,158,11,0.28);}
+    .cal-eventos{margin-top:2rem;display:flex;flex-direction:column;gap:.8rem;}
+    .cal-ev-item{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1rem 1.2rem;display:flex;align-items:center;gap:1rem;cursor:pointer;transition:background .2s;}
+    .cal-ev-item:hover{background:rgba(255,255,255,0.07);}
+    .ev-fecha{background:rgba(245,158,11,0.15);border-radius:8px;padding:.5rem .7rem;text-align:center;min-width:52px;color:var(--oro);flex-shrink:0;}
+    .ev-fecha .num{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;}
+    .ev-fecha .mes{font-size:.62rem;text-transform:uppercase;}
+    .ev-info h4{font-size:.9rem;margin-bottom:.2rem;}
+    .ev-info p{color:var(--gris);font-size:.8rem;}
+    /* MODAL */
+    .overlay{display:none;position:fixed;inset:0;z-index:400;background:rgba(0,0,0,0.78);backdrop-filter:blur(8px);align-items:center;justify-content:center;}
+    .overlay.open{display:flex;}
+    .modal{background:#0d1e3c;border:1px solid var(--border);border-radius:20px;padding:2rem;width:90%;max-width:520px;position:relative;animation:fadeIn .25s ease;max-height:85vh;overflow-y:auto;}
+    .modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--gris);font-size:1.2rem;cursor:pointer;}
+    .modal-close:hover{color:var(--blanco);}
+    .modal-ico{font-size:3.5rem;text-align:center;margin-bottom:1rem;}
+    .modal h3{font-family:'Syne',sans-serif;font-size:1.15rem;margin-bottom:.8rem;}
+    .modal p{color:var(--gris);font-size:.88rem;line-height:1.75;}
+    footer{text-align:center;padding:1.8rem;border-top:1px solid var(--border);color:var(--gris);font-size:.78rem;}
+    footer a{color:var(--gris);text-decoration:none;}
+    @media(max-width:900px){.sec{padding:3rem 1.5rem;}}
+  </style>
+</head>
+<body>
+
+<header>
+  <a class="logo-area" href="index.html">
+    <div class="logo-escudo">🏛️</div>
+    <div class="logo-text">
+      <h1>Instituto Tecnológico</h1>
+      <span>15 de Diciembre</span>
+    </div>
+  </a>
+  <nav>
+    <a href="index.html">🏠 Inicio</a>
+    <a href="menu.html">🍽️ Menú</a>
+    <a href="horarios.html">📋 Horarios</a>
+    <a href="surtidas.html">🎒 Sortides</a>
+    <a href="calendario.html" class="active">📅 Calendario</a>
+    <a href="coin.html">🪙 15DiciembreCoin</a>
+    <a href="contacto.html">📬 Contacto</a>
+  </nav>
+</header>
+
+<div class="page-content">
+  <div class="sec">
+    <p class="sec-title">📅 Calendario Escolar</p>
+    <div class="sec-line"></div>
+    <p class="sec-sub">Navega mes a mes y consulta los eventos del curso. Los días marcados en naranja tienen un evento especial — haz clic para ver los detalles.</p>
+
+    <div class="cal-mes-nav">
+      <button onclick="cambiarMes(-1)">◀</button>
+      <span id="cal-mes-label"></span>
+      <button onclick="cambiarMes(1)">▶</button>
+    </div>
+    <div class="cal-head">
+      <span>Lun</span><span>Mar</span><span>Mié</span><span>Jue</span><span>Vie</span><span>Sáb</span><span>Dom</span>
+    </div>
+    <div class="cal-grid-inner" id="calGrid"></div>
+    <div class="cal-eventos" id="calEvList"></div>
+  </div>
+</div>
+
+<!-- Modal evento -->
+<div class="overlay" id="ov-ev">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('ev')">✕</button>
+    <div class="modal-ico" id="ev-ico"></div>
+    <h3 id="ev-tit"></h3>
+    <p id="ev-desc"></p>
+  </div>
+</div>
+
+<footer>© 2026 Instituto Tecnológico 15 de Diciembre · <a href="mailto:ies15diciembre@gmail.com">ies15diciembre@gmail.com</a></footer>
+
+<script>
+const MESES=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+const EVENTOS={
+  '2026-05-22':{ico:'🤖',tit:'Liga Regional de Robótica',desc:'Competición de robótica educativa. Nuestro equipo representa al instituto en la final provincial. Salida a las 7:30h desde el instituto. ¡Venid a animarles!'},
+  '2026-05-28':{ico:'🎨',tit:'Visita Museo de Ciencias',desc:'Salida cultural de 2.º y 3.º de ESO al museo provincial de ciencias. Transporte en autobús escolar. Regreso previsto a las 14:30h.'},
+  '2026-05-30':{ico:'🎓',tit:'Exposición de Fin de Curso',desc:'Muestra de todos los proyectos desarrollados durante el año académico. Entrada libre para familias y alumnado de 17:00 a 20:00h en el salón de actos.'},
+  '2026-12-15':{ico:'🪙',tit:'Lanzamiento 15DiciembreCoin',desc:'Presentación oficial de la criptomoneda del instituto. Acto en el salón de actos a las 12:00h. ¡Entrada libre para toda la comunidad educativa!'},
+};
+let cY=2026, cM=4;
+
+function renderCal(){
+  const grid=document.getElementById('calGrid');
+  const evList=document.getElementById('calEvList');
+  document.getElementById('cal-mes-label').textContent=MESES[cM]+' '+cY;
+  grid.innerHTML=''; evList.innerHTML='';
+  const diasMes=new Date(cY,cM+1,0).getDate();
+  let first=new Date(cY,cM,1).getDay();
+  first=first===0?6:first-1;
+  const HOY_Y=2026,HOY_M=4,HOY_D=15;
+  for(let i=0;i<first;i++){const d=document.createElement('div');d.className='cal-day empty';grid.appendChild(d);}
+  for(let i=1;i<=diasMes;i++){
+    const key=cY+'-'+String(cM+1).padStart(2,'0')+'-'+String(i).padStart(2,'0');
+    const d=document.createElement('div');
+    const esHoy=(cY===HOY_Y&&cM===HOY_M&&i===HOY_D);
+    const esEv=!!EVENTOS[key];
+    d.className='cal-day'+(esHoy?' today':'')+(esEv?' evento':'');
+    d.textContent=i;
+    if(esEv) d.addEventListener('click',()=>showEv(key));
+    grid.appendChild(d);
+  }
+  let hayEv=false;
+  Object.entries(EVENTOS).forEach(([k,ev])=>{
+    const[y,m,d]=k.split('-').map(Number);
+    if(y===cY&&m===cM+1){
+      hayEv=true;
+      const item=document.createElement('div');
+      item.className='cal-ev-item';
+      item.innerHTML=`<div class="ev-fecha"><div class="num">${d}</div><div class="mes">${MESES[m-1].slice(0,3)}</div></div>
+        <div class="ev-info"><h4>${ev.ico} ${ev.tit}</h4><p>${ev.desc}</p></div>`;
+      item.addEventListener('click',()=>showEv(k));
+      evList.appendChild(item);
+    }
+  });
+  if(!hayEv) evList.innerHTML='<p style="color:var(--gris);font-size:.88rem;margin-top:1rem;">No hay eventos registrados este mes.</p>';
+}
+
+function cambiarMes(d){
+  cM+=d;
+  if(cM>11){cM=0;cY++;}
+  if(cM<0){cM=11;cY--;}
+  renderCal();
+}
+
+function showEv(key){
+  const ev=EVENTOS[key];
+  document.getElementById('ev-ico').textContent=ev.ico;
+  document.getElementById('ev-tit').textContent=ev.tit;
+  document.getElementById('ev-desc').textContent=ev.desc;
+  openModal('ev');
+}
+
+function openModal(id){ document.getElementById('ov-'+id).classList.add('open'); }
+function closeModal(id){ document.getElementById('ov-'+id).classList.remove('open'); }
+document.querySelectorAll('.overlay').forEach(ov=>{
+  ov.addEventListener('click',e=>{ if(e.target===ov) ov.classList.remove('open'); });
+});
+
+renderCal();
+</script>
+</body>
+</html>

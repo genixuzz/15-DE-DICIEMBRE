@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Menú · Instituto Tecnológico 15 de Diciembre</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--azul:#0a1628;--azul-med:#0e2045;--acento:#3b82f6;--acento2:#60a5fa;--oro:#f59e0b;--blanco:#f8fafc;--gris:#94a3b8;--card:rgba(255,255,255,0.05);--border:rgba(255,255,255,0.1);}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--azul);color:var(--blanco);font-family:'DM Sans',sans-serif;overflow-x:hidden;}
+    header{position:sticky;top:0;z-index:200;background:rgba(10,22,40,0.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:.85rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
+    .logo-area{display:flex;align-items:center;gap:.8rem;text-decoration:none;flex-shrink:0;}
+    .logo-escudo{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--acento),var(--oro));display:flex;align-items:center;justify-content:center;font-size:1.3rem;}
+    .logo-text h1{font-family:'Syne',sans-serif;font-size:.92rem;font-weight:800;letter-spacing:.04em;color:var(--blanco);}
+    .logo-text span{font-size:.68rem;color:var(--gris);}
+    nav{display:flex;gap:.25rem;flex-wrap:wrap;}
+    nav a{color:var(--gris);font-family:'DM Sans',sans-serif;font-size:.82rem;padding:.38rem .75rem;border-radius:8px;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:.35rem;}
+    nav a:hover,nav a.active{background:rgba(59,130,246,0.18);color:var(--blanco);}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+    .page-content{animation:fadeIn .3s ease;}
+    .sec{padding:4rem 5rem;}
+    .sec-title{font-family:'Syne',sans-serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:800;margin-bottom:.4rem;}
+    .sec-sub{color:var(--gris);font-size:.9rem;margin-bottom:2rem;}
+    .sec-line{width:3rem;height:3px;background:linear-gradient(90deg,var(--acento),var(--oro));border-radius:99px;margin-bottom:1.8rem;}
+    .menu-tabs{display:flex;gap:.5rem;margin-bottom:1.5rem;flex-wrap:wrap;}
+    .tab-btn{padding:.42rem .95rem;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--gris);font-size:.82rem;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif;}
+    .tab-btn.active,.tab-btn:hover{background:var(--acento);color:#fff;border-color:var(--acento);}
+    .menu-tabla{width:100%;border-collapse:collapse;background:var(--card);border-radius:14px;overflow:hidden;border:1px solid var(--border);}
+    .menu-tabla thead{background:rgba(59,130,246,0.15);}
+    .menu-tabla th{padding:.9rem 1.1rem;text-align:left;font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--acento2);}
+    .menu-tabla td{padding:.85rem 1.1rem;border-top:1px solid var(--border);font-size:.88rem;}
+    .menu-tabla tr:hover td{background:rgba(255,255,255,0.03);}
+    .badge{border-radius:5px;padding:.12rem .45rem;font-size:.68rem;}
+    .bh{background:rgba(16,185,129,0.15);color:#34d399;}
+    .bc{background:rgba(245,158,11,0.15);color:#fbbf24;}
+    .menu-nota{margin-top:1rem;color:var(--gris);font-size:.8rem;}
+    .menu-panel{display:none;}
+    .menu-panel.active{display:block;}
+    footer{text-align:center;padding:1.8rem;border-top:1px solid var(--border);color:var(--gris);font-size:.78rem;}
+    footer a{color:var(--gris);text-decoration:none;}
+    @media(max-width:900px){.sec{padding:3rem 1.5rem;}.menu-tabla th,.menu-tabla td{padding:.6rem .6rem;font-size:.78rem;}}
+  </style>
+</head>
+<body>
+
+<header>
+  <a class="logo-area" href="index.html">
+    <div class="logo-escudo">🏛️</div>
+    <div class="logo-text">
+      <h1>Instituto Tecnológico</h1>
+      <span>15 de Diciembre</span>
+    </div>
+  </a>
+  <nav>
+    <a href="index.html">🏠 Inicio</a>
+    <a href="menu.html" class="active">🍽️ Menú</a>
+    <a href="horarios.html">📋 Horarios</a>
+    <a href="surtidas.html">🎒 Sortides</a>
+    <a href="calendario.html">📅 Calendario</a>
+    <a href="coin.html">🪙 15DiciembreCoin</a>
+    <a href="contacto.html">📬 Contacto</a>
+  </nav>
+</header>
+
+<div class="page-content">
+  <div class="sec">
+    <p class="sec-title">🍽️ Menú Escolar</p>
+    <div class="sec-line"></div>
+    <p class="sec-sub">El comedor del instituto ofrece un menú equilibrado, variado y adaptado a las necesidades de todo el alumnado. Disponemos de opción halal y menú sin gluten para celíacos. Semana del 5 al 9 de mayo.</p>
+
+    <div class="menu-tabs">
+      <button class="tab-btn active" onclick="showTab('normal',this)">Menú estándar</button>
+      <button class="tab-btn" onclick="showTab('halal',this)">🌙 Menú Halal</button>
+      <button class="tab-btn" onclick="showTab('celiac',this)">🌾 Sin gluten (celíacos)</button>
+    </div>
+
+    <div class="menu-panel active" id="tab-normal">
+      <table class="menu-tabla">
+        <thead><tr><th>Día</th><th>Primero</th><th>Segundo</th><th>Postre</th></tr></thead>
+        <tbody>
+          <tr><td>📅 Lunes</td><td>Lentejas estofadas con verduras</td><td>Pollo asado con patatas al horno</td><td>Fruta del tiempo</td></tr>
+          <tr><td>📅 Martes</td><td>Sopa de fideos casera</td><td>Merluza al horno con guarnición</td><td>Yogur natural</td></tr>
+          <tr><td>📅 Miércoles</td><td>Macarrones a la boloñesa</td><td>Albóndigas en salsa de tomate</td><td>Naranja</td></tr>
+          <tr><td>📅 Jueves</td><td>Crema de verduras de temporada</td><td>Hamburguesa de ternera con ensalada</td><td>Manzana</td></tr>
+          <tr><td>📅 Viernes</td><td>Arroz a la cubana</td><td>Pescado rebozado con patatas</td><td>Flan casero</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="menu-panel" id="tab-halal">
+      <table class="menu-tabla">
+        <thead><tr><th>Día</th><th>Primero</th><th>Segundo</th><th>Postre</th></tr></thead>
+        <tbody>
+          <tr><td>📅 Lunes</td><td>Lentejas estofadas</td><td>Pollo halal asado con patatas <span class="badge bh">Halal</span></td><td>Fruta</td></tr>
+          <tr><td>📅 Martes</td><td>Sopa de fideos</td><td>Merluza al horno <span class="badge bh">Halal</span></td><td>Yogur</td></tr>
+          <tr><td>📅 Miércoles</td><td>Macarrones</td><td>Ternera halal en salsa de tomate <span class="badge bh">Halal</span></td><td>Naranja</td></tr>
+          <tr><td>📅 Jueves</td><td>Crema de verduras</td><td>Hamburguesa halal con ensalada <span class="badge bh">Halal</span></td><td>Manzana</td></tr>
+          <tr><td>📅 Viernes</td><td>Arroz a la cubana</td><td>Pescado al vapor con verduras <span class="badge bh">Halal</span></td><td>Flan</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="menu-panel" id="tab-celiac">
+      <table class="menu-tabla">
+        <thead><tr><th>Día</th><th>Primero</th><th>Segundo</th><th>Postre</th></tr></thead>
+        <tbody>
+          <tr><td>📅 Lunes</td><td>Lentejas estofadas <span class="badge bc">Sin gluten</span></td><td>Pollo asado con patatas</td><td>Fruta</td></tr>
+          <tr><td>📅 Martes</td><td>Sopa de arroz <span class="badge bc">Sin gluten</span></td><td>Merluza al horno</td><td>Yogur</td></tr>
+          <tr><td>📅 Miércoles</td><td>Quinoa con verduras <span class="badge bc">Sin gluten</span></td><td>Ternera a la plancha</td><td>Naranja</td></tr>
+          <tr><td>📅 Jueves</td><td>Crema de verduras <span class="badge bc">Sin gluten</span></td><td>Hamburguesa s/gluten <span class="badge bc">Sin gluten</span></td><td>Manzana</td></tr>
+          <tr><td>📅 Viernes</td><td>Arroz blanco <span class="badge bc">Sin gluten</span></td><td>Pescado a la plancha</td><td>Natillas s/gluten</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="menu-nota">ℹ️ Para alergias o intolerancias adicionales, contacta directamente con el comedor. El menú puede variar sin previo aviso por causas de suministro.</p>
+  </div>
+</div>
+
+<footer>© 2026 Instituto Tecnológico 15 de Diciembre · <a href="mailto:ies15diciembre@gmail.com">ies15diciembre@gmail.com</a></footer>
+
+<script>
+function showTab(tipo, btn) {
+  document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-' + tipo).classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>

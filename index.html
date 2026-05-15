@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Inicio · Instituto Tecnológico 15 de Diciembre</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--azul:#0a1628;--azul-med:#0e2045;--acento:#3b82f6;--acento2:#60a5fa;--oro:#f59e0b;--blanco:#f8fafc;--gris:#94a3b8;--card:rgba(255,255,255,0.05);--border:rgba(255,255,255,0.1);}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--azul);color:var(--blanco);font-family:'DM Sans',sans-serif;overflow-x:hidden;}
+    header{position:sticky;top:0;z-index:200;background:rgba(10,22,40,0.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:.85rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
+    .logo-area{display:flex;align-items:center;gap:.8rem;text-decoration:none;flex-shrink:0;}
+    .logo-escudo{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--acento),var(--oro));display:flex;align-items:center;justify-content:center;font-size:1.3rem;}
+    .logo-text h1{font-family:'Syne',sans-serif;font-size:.92rem;font-weight:800;letter-spacing:.04em;color:var(--blanco);}
+    .logo-text span{font-size:.68rem;color:var(--gris);}
+    nav{display:flex;gap:.25rem;flex-wrap:wrap;}
+    nav a{color:var(--gris);font-family:'DM Sans',sans-serif;font-size:.82rem;padding:.38rem .75rem;border-radius:8px;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:.35rem;}
+    nav a:hover,nav a.active{background:rgba(59,130,246,0.18);color:var(--blanco);}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+    .page-content{animation:fadeIn .3s ease;}
+    .hero{min-height:88vh;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;padding:5rem;position:relative;overflow:hidden;}
+    .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 70% 50%,rgba(59,130,246,0.12) 0%,transparent 70%);pointer-events:none;}
+    .hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(59,130,246,0.15);border:1px solid rgba(59,130,246,0.3);border-radius:999px;padding:.35rem 1rem;font-size:.78rem;color:var(--acento2);margin-bottom:1.5rem;width:fit-content;}
+    .hero h2{font-family:'Syne',sans-serif;font-size:clamp(2rem,4vw,3.4rem);font-weight:800;line-height:1.1;margin-bottom:1.2rem;}
+    .hero h2 span{color:var(--acento);}
+    .hero-desc{color:var(--gris);font-size:1rem;line-height:1.7;max-width:460px;margin-bottom:2.5rem;}
+    .hero-btns{display:flex;gap:1rem;flex-wrap:wrap;}
+    .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.7rem 1.4rem;border-radius:10px;font-size:.88rem;font-weight:500;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;transition:all .2s;text-decoration:none;}
+    .btn-primary{background:var(--acento);color:#fff;} .btn-primary:hover{background:#2563eb;transform:translateY(-1px);}
+    .btn-ghost{background:transparent;border:1px solid var(--border);color:var(--blanco);} .btn-ghost:hover{background:var(--card);}
+    .foto-box{width:100%;aspect-ratio:4/3;border-radius:20px;border:1px solid var(--border);overflow:hidden;}
+    .foto-box img{width:100%;height:100%;object-fit:cover;display:block;}
+    .modules-strip{padding:2.5rem 5rem;background:var(--azul-med);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+    .modules-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;}
+    .module-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.6rem 1.3rem;cursor:pointer;transition:all .25s;display:flex;flex-direction:column;gap:.7rem;text-decoration:none;color:var(--blanco);}
+    .module-card:hover{background:rgba(59,130,246,0.1);border-color:rgba(59,130,246,0.4);transform:translateY(-3px);}
+    .module-icon{font-size:2rem;}
+    .module-card h3{font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;}
+    .module-card p{color:var(--gris);font-size:.8rem;line-height:1.5;}
+    .module-tag{display:inline-block;font-size:.7rem;background:rgba(59,130,246,0.15);color:var(--acento2);border-radius:5px;padding:.2rem .5rem;width:fit-content;}
+    footer{text-align:center;padding:1.8rem;border-top:1px solid var(--border);color:var(--gris);font-size:.78rem;}
+    footer a{color:var(--gris);text-decoration:none;}
+    @media(max-width:900px){
+      .hero{grid-template-columns:1fr;padding:3rem 1.5rem;min-height:auto;}
+      .hero-foto{display:none;}
+      .modules-strip{padding:2rem 1.5rem;}
+      .modules-grid{grid-template-columns:repeat(2,1fr);}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a class="logo-area" href="index.html">
+    <div class="logo-escudo">🏛️</div>
+    <div class="logo-text">
+      <h1>Instituto Tecnológico</h1>
+      <span>15 de Diciembre</span>
+    </div>
+  </a>
+  <nav>
+    <a href="index.html" class="active">🏠 Inicio</a>
+    <a href="menu.html">🍽️ Menú</a>
+    <a href="horarios.html">📋 Horarios</a>
+    <a href="surtidas.html">🎒 Salidas</a>
+    <a href="calendario.html">📅 Calendario</a>
+    <a href="coin.html">🪙 15DiciembreCoin</a>
+    <a href="contacto.html">📬 Contacto</a>
+  </nav>
+</header>
+
+<div class="page-content">
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-badge">📚 Curso 2025–2026</div>
+      <h2>Bienvenidos al <span>Instituto Tecnológico</span> 15 de Diciembre</h2>
+      <p class="hero-desc">Tu portal escolar: consulta el menú del comedor, los horarios de clase, las salidas y todos los eventos del curso académico desde un solo lugar.</p>
+      <div class="hero-btns">
+        <a href="horarios.html" class="btn btn-primary">📋 Ver horarios</a>
+        <a href="menu.html" class="btn btn-ghost">🍽️ Menú de hoy</a>
+      </div>
+    </div>
+    <div class="hero-foto">
+      <div class="foto-box">
+        <img src="image.png" alt="Instituto Tecnológico 15 de Diciembre"/>
+      </div>
+    </div>
+  </div>
+
+  <div class="modules-strip">
+    <div class="modules-grid">
+      <a class="module-card" href="menu.html">
+        <span class="module-icon">🍽️</span>
+        <h3>Menú Escolar</h3>
+        <p>Consulta el menú semanal del comedor escolar. Disponible en versión estándar, halal y sin gluten.</p>
+        <span class="module-tag">Semana actual</span>
+      </a>
+      <a class="module-card" href="calendario.html">
+        <span class="module-icon">📅</span>
+        <h3>Calendario</h3>
+        <p>Consulta las fechas importantes del curso: exámenes, festividades, salidas y eventos del instituto.</p>
+        <span class="module-tag">Actualizado</span>
+      </a>
+      <a class="module-card" href="surtidas.html">
+        <span class="module-icon">🎒</span>
+        <h3>Salidas</h3>
+        <p>Projectes, activitats extraescolars i esdeveniments especials organitzats per l'institut al llarg del curs.</p>
+        <span class="module-tag">Ver todo</span>
+      </a>
+      <a class="module-card" href="coin.html">
+        <span class="module-icon">🪙</span>
+        <h3>15DiciembreCoin</h3>
+        <p>La criptomoneda oficial del instituto, diseñada para ser utilizada en el entorno escolar.</p>
+        <span class="module-tag">¡Nueva!</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>© 2026 Instituto Tecnológico 15 de Diciembre · Todos los derechos reservados · <a href="mailto:ies15diciembre@gmail.com">ies15diciembre@gmail.com</a></footer>
+
+</body>
+</html>

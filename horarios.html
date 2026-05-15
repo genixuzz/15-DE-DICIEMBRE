@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Horarios · Instituto Tecnológico 15 de Diciembre</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--azul:#0a1628;--azul-med:#0e2045;--acento:#3b82f6;--acento2:#60a5fa;--oro:#f59e0b;--blanco:#f8fafc;--gris:#94a3b8;--card:rgba(255,255,255,0.05);--border:rgba(255,255,255,0.1);}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--azul);color:var(--blanco);font-family:'DM Sans',sans-serif;overflow-x:hidden;}
+    header{position:sticky;top:0;z-index:200;background:rgba(10,22,40,0.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:.85rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
+    .logo-area{display:flex;align-items:center;gap:.8rem;text-decoration:none;flex-shrink:0;}
+    .logo-escudo{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--acento),var(--oro));display:flex;align-items:center;justify-content:center;font-size:1.3rem;}
+    .logo-text h1{font-family:'Syne',sans-serif;font-size:.92rem;font-weight:800;letter-spacing:.04em;color:var(--blanco);}
+    .logo-text span{font-size:.68rem;color:var(--gris);}
+    nav{display:flex;gap:.25rem;flex-wrap:wrap;}
+    nav a{color:var(--gris);font-family:'DM Sans',sans-serif;font-size:.82rem;padding:.38rem .75rem;border-radius:8px;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:.35rem;}
+    nav a:hover,nav a.active{background:rgba(59,130,246,0.18);color:var(--blanco);}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+    .page-content{animation:fadeIn .3s ease;}
+    .sec{padding:4rem 5rem;}
+    .sec-title{font-family:'Syne',sans-serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:800;margin-bottom:.4rem;}
+    .sec-sub{color:var(--gris);font-size:.9rem;margin-bottom:2rem;}
+    .sec-line{width:3rem;height:3px;background:linear-gradient(90deg,var(--acento),var(--oro));border-radius:99px;margin-bottom:1.8rem;}
+    .horarios-tabs{display:flex;gap:.5rem;margin-bottom:1.5rem;flex-wrap:wrap;}
+    .hor-tab{padding:.42rem .95rem;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--gris);font-size:.82rem;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif;}
+    .hor-tab.active,.hor-tab:hover{background:var(--oro);color:#000;border-color:var(--oro);font-weight:600;}
+    .hor-panel{display:none;}
+    .hor-panel.active{display:block;}
+    .hor-title{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin-bottom:1rem;color:var(--acento2);}
+    .hor-tabla{width:100%;border-collapse:collapse;background:var(--card);border-radius:14px;overflow:hidden;border:1px solid var(--border);margin-bottom:1.5rem;}
+    .hor-tabla thead{background:rgba(245,158,11,0.12);}
+    .hor-tabla th{padding:.8rem 1rem;text-align:center;font-size:.75rem;text-transform:uppercase;letter-spacing:.07em;color:var(--oro);}
+    .hor-tabla th:first-child{text-align:left;}
+    .hor-tabla td{padding:.75rem 1rem;border-top:1px solid var(--border);font-size:.85rem;text-align:center;}
+    .hor-tabla td:first-child{text-align:left;color:var(--gris);font-size:.8rem;font-weight:500;}
+    .hor-tabla tr:hover td{background:rgba(255,255,255,0.03);}
+    .asig{display:inline-block;padding:.2rem .5rem;border-radius:5px;font-size:.78rem;}
+    .a1{background:rgba(59,130,246,0.2);color:#93c5fd;}
+    .a2{background:rgba(16,185,129,0.2);color:#6ee7b7;}
+    .a3{background:rgba(245,158,11,0.2);color:#fcd34d;}
+    .a4{background:rgba(239,68,68,0.2);color:#fca5a5;}
+    .a5{background:rgba(168,85,247,0.2);color:#d8b4fe;}
+    .a6{background:rgba(236,72,153,0.2);color:#f9a8d4;}
+    .recreo{background:rgba(255,255,255,0.08);color:var(--gris);font-style:italic;font-size:.78rem;}
+    footer{text-align:center;padding:1.8rem;border-top:1px solid var(--border);color:var(--gris);font-size:.78rem;}
+    footer a{color:var(--gris);text-decoration:none;}
+    @media(max-width:900px){.sec{padding:3rem 1.5rem;}.hor-tabla th,.hor-tabla td{padding:.5rem .4rem;font-size:.72rem;}}
+  </style>
+</head>
+<body>
+
+<header>
+  <a class="logo-area" href="index.html">
+    <div class="logo-escudo">🏛️</div>
+    <div class="logo-text">
+      <h1>Instituto Tecnológico</h1>
+      <span>15 de Diciembre</span>
+    </div>
+  </a>
+  <nav>
+    <a href="index.html">🏠 Inicio</a>
+    <a href="menu.html">🍽️ Menú</a>
+    <a href="horarios.html" class="active">📋 Horarios</a>
+    <a href="surtidas.html">🎒 Sortides</a>
+    <a href="calendario.html">📅 Calendario</a>
+    <a href="coin.html">🪙 15DiciembreCoin</a>
+    <a href="contacto.html">📬 Contacto</a>
+  </nav>
+</header>
+
+<div class="page-content">
+  <div class="sec">
+    <p class="sec-title">📋 Horarios de Clase</p>
+    <div class="sec-line"></div>
+    <p class="sec-sub">Consulta los horarios semanales de cada grupo. Haz clic en la pestaña de tu curso para ver tu horario completo.</p>
+
+    <div class="horarios-tabs">
+      <button class="hor-tab active" onclick="showHor('1eso',this)">1.º ESO</button>
+      <button class="hor-tab" onclick="showHor('2eso',this)">2.º ESO</button>
+      <button class="hor-tab" onclick="showHor('3eso',this)">3.º ESO</button>
+      <button class="hor-tab" onclick="showHor('4eso',this)">4.º ESO</button>
+    </div>
+
+    <!-- 1.º ESO -->
+    <div class="hor-panel active" id="hor-1eso">
+      <p class="hor-title">Horario — 1.º ESO (Grupo A)</p>
+      <table class="hor-tabla">
+        <thead><tr><th>Hora</th><th>Lunes</th><th>Martes</th><th>Miércoles</th><th>Jueves</th><th>Viernes</th></tr></thead>
+        <tbody>
+          <tr><td>08:00 – 09:00</td><td><span class="asig a1">Matemáticas</span></td><td><span class="asig a2">Lengua</span></td><td><span class="asig a3">Inglés</span></td><td><span class="asig a1">Matemáticas</span></td><td><span class="asig a4">CC. Naturales</span></td></tr>
+          <tr><td>09:00 – 10:00</td><td><span class="asig a2">Lengua</span></td><td><span class="asig a5">Historia</span></td><td><span class="asig a1">Matemáticas</span></td><td><span class="asig a2">Lengua</span></td><td><span class="asig a1">Matemáticas</span></td></tr>
+          <tr><td>10:00 – 11:00</td><td><span class="asig a3">Inglés</span></td><td><span class="asig a4">CC. Naturales</span></td><td><span class="asig a2">Lengua</span></td><td><span class="asig a6">Ed. Física</span></td><td><span class="asig a3">Inglés</span></td></tr>
+          <tr><td>11:00 – 11:30</td><td colspan="5"><span class="recreo">☕ Recreo</span></td></tr>
+          <tr><td>11:30 – 12:30</td><td><span class="asig a4">CC. Naturales</span></td><td><span class="asig a1">Matemáticas</span></td><td><span class="asig a5">Historia</span></td><td><span class="asig a3">Inglés</span></td><td><span class="asig a5">Historia</span></td></tr>
+          <tr><td>12:30 – 13:30</td><td><span class="asig a5">Historia</span></td><td><span class="asig a6">Ed. Física</span></td><td><span class="asig a4">CC. Naturales</span></td><td><span class="asig a1">Matemáticas</span></td><td><span class="asig a2">Lengua</span></td></tr>
+          <tr><td>13:30 – 14:30</td><td><span class="asig a6">Ed. Física</span></td><td><span class="asig a3">Inglés</span></td><td><span class="asig a6">Ed. Física</span></td><td><span class="asig a5">Historia</span></td><td><span class="asig a4">CC. Naturales</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 2.º ESO -->
+    <div class="hor-panel" id="hor-2eso">
+      <p class="hor-title">Horario — 2.º ESO (Grupo A)</p>
+      <table class="hor-tabla">
+        <thead><tr><th>Hora</th><th>Lunes</th><th>Martes</th><th>Miércoles</th><th>Jueves</th><th>Viernes</th></tr></thead>
+        <tbody>
+          <tr><td>08:00 – 09:00</td><td><span class="asig a3">Inglés</span></td><td><span class="asig a1">Matemáticas</span></td><td><span class="asig a2">Lengua</span></td><td><span class="asig a4">Biología</span></td><td><span class="asig a1">Matemáticas</span></td></tr>
+          <tr><td>09:00 – 10:00</td><td><span class="asig a1">Matemáticas</span></td><td><span class="asig a5">Geografía</span></td><td><span class="asig a3">Inglés</span></td><td><span class="asig a1">Matemáticas</span></td><td><span class="asig a2">Lengua</span></td></tr>
+          <tr><td>10:00 – 11:00</td><td><span class="asig a2">Lengua</span></td><td><span class="asig a3">Inglés</span></td><td><span class="asig a5">Geografía</span></td><td><span class="asig a2">Lengua</span></td><td><span class="asig a6">Ed. Física</span></td></tr>
+          <tr><td>11:00 – 11:30</td><td colspan="5"><span class="recreo">☕ Recreo</span></td></tr>
+          <tr><td>11:30 – 12:30</td><td><span class="asig a5">Geografía</span></td><td><span class="asig a2">Lengua</span></td><td><span class="asig a1">Matemáticas</span></td><td><span class="asig a3">Inglés</span></td><td><span class="asig a4">Biología</span></td></tr>
+          <tr><td>12:30 – 13:30</td><td><span class="asig a4">Biología</span></td><td><span class="asig a6">Ed. Física</span></td><td><span class="asig a4">Biología</span></td><td><span class="asig a6">Ed. Física</span></td><td><span class="asig a5">Geografía</span></td></tr>
+          <tr><td>13:30 – 14:30</td><td><span class="asig a6">Ed. Física</span></td><td><span class="asig a4">Biología</span></td><td><span class="asig a6">Ed. Física</span></td><td><span class="asig a5">Geografía</span></td><td><span class="asig a3">Inglés</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 3.º ESO -->
+    <div class="hor-panel" id="hor-3eso">
+      <p class="hor-title">Horario — 3.º ESO (Grupo A)</p>
+      <table class="hor-tabla">
+        <thead><tr><th>Hora</th><th>Lunes</th><th>Martes</th><th>Miércoles</th><th>Jueves</th><th>Viernes</th></tr></thead>
+        <tbody>
+          <tr><td>08:00 – 09:00</td><td><span class="asig a2">Lengua</span></td><td><span class="asig a3">Inglés</span></td><td><span class="asig a1">Matemáticas</span></td><td><span class="asig a5">Física y Quím.</span></td><td><span class="asig a2">Lengua</span></td></tr>
+          <tr><td>09:00 – 10:00</td><td><span class="asig a1">Matemáticas</span></td><td><span class="asig a4">Historia</span></td><td><span class="asig a3">Inglés</span></td><td><span class="asig a1">Matemáticas</span></td><td><span class="asig a5">Física y Quím.</span></td></tr>
+          <tr><td>10:00 – 11:00</td><td><span class="asig a5">Física y Quím.</span></td><td><span class="asig a1">Matemáticas</span></td><td><span class="asig a4">Historia</span></td><td><span class="asig a3">Inglés</span></td><td><span class="asig a1">Matemáticas</span></td></tr>
+          <tr><td>11:00 – 11:30</td><td colspan="5"><span class="recreo">☕ Recreo</span></td></tr>
+          <tr><td>11:30 – 12:30</td><td><span class="asig a3">Inglés</span></td><td><span class="asig a2">Lengua</span></td><td><span class="asig a6">Ed. Física</span></td><td><span class="asig a2">Lengua</span></td><td><span class="asig a4">Historia</span></td></tr>
+          <tr><td>12:30 – 13:30</td><td><span class="asig a4">Historia</span></td><td><span class="asig a5">Física y Quím.</span></td><td><span class="asig a2">Lengua</span></td><td><span class="asig a6">Ed. Física</span></td><td><span class="asig a3">Inglés</span></td></tr>
+          <tr><td>13:30 – 14:30</td><td><span class="asig a6">Ed. Física</span></td><td><span class="asig a6">Ed. Física</span></td><td><span class="asig a5">Física y Quím.</span></td><td><span class="asig a4">Historia</span></td><td><span class="asig a6">Ed. Física</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 4.º ESO -->
+    <div class="hor-panel" id="hor-4eso">
+      <p class="hor-title">Horario — 4.º ESO (Grupo A)</p>
+      <table class="hor-tabla">
+        <thead><tr><th>Hora</th><th>Lunes</th><th>Martes</th><th>Miércoles</th><th>Jueves</th><th>Viernes</th></tr></thead>
+        <tbody>
+          <tr><td>08:00 – 09:00</td><td><span class="asig a1">Matemáticas</span></td><td><span class="asig a2">Lengua</span></td><td><span class="asig a5">Economía</span></td><td><span class="asig a3">Inglés</span></td><td><span class="asig a1">Matemáticas</span></td></tr>
+          <tr><td>09:00 – 10:00</td><td><span class="asig a3">Inglés</span></td><td><span class="asig a5">Economía</span></td><td><span class="asig a1">Matemáticas</span></td><td><span class="asig a2">Lengua</span></td><td><span class="asig a4">Tecnología</span></td></tr>
+          <tr><td>10:00 – 11:00</td><td><span class="asig a2">Lengua</span></td><td><span class="asig a4">Tecnología</span></td><td><span class="asig a2">Lengua</span></td><td><span class="asig a1">Matemáticas</span></td><td><span class="asig a3">Inglés</span></td></tr>
+          <tr><td>11:00 – 11:30</td><td colspan="5"><span class="recreo">☕ Recreo</span></td></tr>
+          <tr><td>11:30 – 12:30</td><td><span class="asig a4">Tecnología</span></td><td><span class="asig a3">Inglés</span></td><td><span class="asig a3">Inglés</span></td><td><span class="asig a5">Economía</span></td><td><span class="asig a2">Lengua</span></td></tr>
+          <tr><td>12:30 – 13:30</td><td><span class="asig a5">Economía</span></td><td><span class="asig a1">Matemáticas</span></td><td><span class="asig a4">Tecnología</span></td><td><span class="asig a4">Tecnología</span></td><td><span class="asig a5">Economía</span></td></tr>
+          <tr><td>13:30 – 14:30</td><td><span class="asig a6">Ed. Física</span></td><td><span class="asig a6">Ed. Física</span></td><td><span class="asig a6">Ed. Física</span></td><td><span class="asig a6">Ed. Física</span></td><td><span class="asig a6">Ed. Física</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+<footer>© 2026 Instituto Tecnológico 15 de Diciembre · <a href="mailto:ies15diciembre@gmail.com">ies15diciembre@gmail.com</a></footer>
+
+<script>
+function showHor(id, btn) {
+  document.querySelectorAll('.hor-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('hor-' + id).classList.add('active');
+  document.querySelectorAll('.hor-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>

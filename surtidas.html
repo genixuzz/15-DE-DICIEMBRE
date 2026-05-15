@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Salidas · Instituto Tecnológico 15 de Diciembre</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--azul:#0a1628;--azul-med:#0e2045;--acento:#3b82f6;--acento2:#60a5fa;--oro:#f59e0b;--blanco:#f8fafc;--gris:#94a3b8;--card:rgba(255,255,255,0.05);--border:rgba(255,255,255,0.1);}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--azul);color:var(--blanco);font-family:'DM Sans',sans-serif;overflow-x:hidden;}
+    header{position:sticky;top:0;z-index:200;background:rgba(10,22,40,0.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:.85rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
+    .logo-area{display:flex;align-items:center;gap:.8rem;text-decoration:none;flex-shrink:0;}
+    .logo-escudo{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--acento),var(--oro));display:flex;align-items:center;justify-content:center;font-size:1.3rem;}
+    .logo-text h1{font-family:'Syne',sans-serif;font-size:.92rem;font-weight:800;letter-spacing:.04em;color:var(--blanco);}
+    .logo-text span{font-size:.68rem;color:var(--gris);}
+    nav{display:flex;gap:.25rem;flex-wrap:wrap;}
+    nav a{color:var(--gris);font-family:'DM Sans',sans-serif;font-size:.82rem;padding:.38rem .75rem;border-radius:8px;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:.35rem;}
+    nav a:hover,nav a.active{background:rgba(59,130,246,0.18);color:var(--blanco);}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+    .page-content{animation:fadeIn .3s ease;}
+    .sec{padding:4rem 5rem;}
+    .sec-title{font-family:'Syne',sans-serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:800;margin-bottom:.4rem;}
+    .sec-sub{color:var(--gris);font-size:.9rem;margin-bottom:2rem;}
+    .sec-line{width:3rem;height:3px;background:linear-gradient(90deg,var(--acento),var(--oro));border-radius:99px;margin-bottom:1.8rem;}
+    .surtidas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;}
+    .surtida-card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:transform .25s;cursor:pointer;}
+    .surtida-card:hover{transform:translateY(-4px);}
+    .surtida-img{width:100%;aspect-ratio:16/9;background:linear-gradient(135deg,#0e2045,#1e3a5f);display:flex;align-items:center;justify-content:center;font-size:3.5rem;}
+    .surtida-body{padding:1.2rem;}
+    .surtida-body h4{font-family:'Syne',sans-serif;font-weight:700;margin-bottom:.4rem;}
+    .surtida-body p{color:var(--gris);font-size:.82rem;line-height:1.5;}
+    .ver-mas{display:inline-block;margin-top:.7rem;font-size:.78rem;color:var(--acento2);font-weight:500;}
+    /* MODAL */
+    .overlay{display:none;position:fixed;inset:0;z-index:400;background:rgba(0,0,0,0.78);backdrop-filter:blur(8px);align-items:center;justify-content:center;}
+    .overlay.open{display:flex;}
+    .modal{background:#0d1e3c;border:1px solid var(--border);border-radius:20px;padding:2rem;width:90%;max-width:520px;position:relative;animation:fadeIn .25s ease;max-height:85vh;overflow-y:auto;}
+    .modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--gris);font-size:1.2rem;cursor:pointer;}
+    .modal-close:hover{color:var(--blanco);}
+    .modal-ico{font-size:3.5rem;text-align:center;margin-bottom:1rem;}
+    .modal h3{font-family:'Syne',sans-serif;font-size:1.15rem;margin-bottom:.8rem;}
+    .modal p{color:var(--gris);font-size:.88rem;line-height:1.75;}
+    footer{text-align:center;padding:1.8rem;border-top:1px solid var(--border);color:var(--gris);font-size:.78rem;}
+    footer a{color:var(--gris);text-decoration:none;}
+    @media(max-width:900px){.sec{padding:3rem 1.5rem;}.surtidas-grid{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+
+<header>
+  <a class="logo-area" href="index.html">
+    <div class="logo-escudo">🏛️</div>
+    <div class="logo-text">
+      <h1>Instituto Tecnológico</h1>
+      <span>15 de Diciembre</span>
+    </div>
+  </a>
+  <nav>
+    <a href="index.html">🏠 Inicio</a>
+    <a href="menu.html">🍽️ Menú</a>
+    <a href="horarios.html">📋 Horarios</a>
+    <a href="surtidas.html" class="active">🎒 Salidas</a>
+    <a href="calendario.html">📅 Calendario</a>
+    <a href="coin.html">🪙 15DiciembreCoin</a>
+    <a href="contacto.html">📬 Contacto</a>
+  </nav>
+</header>
+
+<div class="page-content">
+  <div class="sec">
+    <p class="sec-title">🎒 Salidas</p>
+    <div class="sec-line"></div>
+    <p class="sec-sub">Projectes, activitats extraescolars i esdeveniments especials organitzats per l'institut al llarg del curs. Fes clic a cada targeta per veure'n els detalls.</p>
+
+    <div class="surtidas-grid">
+      <div class="surtida-card" onclick="openModal('s1')">
+        <div class="surtida-img">🎨</div>
+        <div class="surtida-body">
+          <h4>Visita al Museo de Ciencias</h4>
+          <p>Salida cultural para los alumnos de 2.º y 3.º de ESO al museo provincial de ciencias y tecnología.</p>
+          <span class="ver-mas">Ver más info →</span>
+        </div>
+      </div>
+      <div class="surtida-card" onclick="openModal('s2')">
+        <div class="surtida-img">🌱</div>
+        <div class="surtida-body">
+          <h4>Proyecto Huerto Escolar</h4>
+          <p>Iniciativa medioambiental donde los alumnos cuidan el huerto orgánico del patio del instituto.</p>
+          <span class="ver-mas">Ver más info →</span>
+        </div>
+      </div>
+      <div class="surtida-card" onclick="openModal('s3')">
+        <div class="surtida-img">🤖</div>
+        <div class="surtida-body">
+          <h4>Club de Robótica</h4>
+          <p>Taller extracurricular de programación y robótica con participación en la liga regional de robótica educativa.</p>
+          <span class="ver-mas">Ver más info →</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modales -->
+<div class="overlay" id="ov-s1">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('s1')">✕</button>
+    <div class="modal-ico">🎨</div>
+    <h3>Visita al Museo de Ciencias</h3>
+    <p>Salida cultural para los alumnos de 2.º y 3.º de ESO al museo provincial de ciencias. Exploraremos las exposiciones de tecnología, innovación y ciencias aplicadas.<br/><br/>
+    📅 <strong style="color:var(--blanco)">Fecha:</strong> 28 de mayo de 2026<br/>
+    🕘 <strong style="color:var(--blanco)">Salida:</strong> 9:00h desde la puerta principal<br/>
+    🚌 <strong style="color:var(--blanco)">Transporte:</strong> Autobús escolar incluido<br/>
+    🎟️ <strong style="color:var(--blanco)">Entrada:</strong> Cubierta por el instituto<br/><br/>
+    Los alumnos deben traer la autorización firmada y almuerzo propio. El regreso está previsto para las 14:30h.</p>
+  </div>
+</div>
+
+<div class="overlay" id="ov-s2">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('s2')">✕</button>
+    <div class="modal-ico">🌱</div>
+    <h3>Proyecto Huerto Escolar</h3>
+    <p>Iniciativa medioambiental donde los alumnos cuidan el huerto orgánico situado en el patio del instituto. Se cultivan tomates, lechugas, judías verdes y hierbas aromáticas.<br/><br/>
+    🗓️ <strong style="color:var(--blanco)">Turnos:</strong> Semanales, por clase asignada<br/>
+    🌿 <strong style="color:var(--blanco)">Destino:</strong> Los productos cosechados se utilizan en el comedor<br/>
+    🏆 <strong style="color:var(--blanco)">Premio:</strong> Al grupo más responsable cada trimestre<br/><br/>
+    El proyecto está integrado en el currículo de Biología y Educación para la Ciudadanía, y cuenta con la colaboración del Ayuntamiento local.</p>
+  </div>
+</div>
+
+<div class="overlay" id="ov-s3">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('s3')">✕</button>
+    <div class="modal-ico">🤖</div>
+    <h3>Club de Robótica</h3>
+    <p>Taller extracurricular de programación y robótica que se reúne los martes y jueves de 16:00 a 18:00h en el aula de tecnología.<br/><br/>
+    🏆 <strong style="color:var(--blanco)">Liga Regional:</strong> 22 de mayo de 2026<br/>
+    💻 <strong style="color:var(--blanco)">Lenguajes:</strong> Python, Arduino y Scratch<br/>
+    👥 <strong style="color:var(--blanco)">Plazas:</strong> Limitadas — 20 alumnos máximo<br/>
+    📝 <strong style="color:var(--blanco)">Inscripción:</strong> A través de secretaría<br/><br/>
+    Los equipos están construyendo un robot autónomo para la competición provincial. El año pasado quedamos en segundo lugar, ¡este año vamos a por el primero!</p>
+  </div>
+</div>
+
+<footer>© 2026 Instituto Tecnológico 15 de Diciembre · <a href="mailto:ies15diciembre@gmail.com">ies15diciembre@gmail.com</a></footer>
+
+<script>
+function openModal(id) { document.getElementById('ov-' + id).classList.add('open'); }
+function closeModal(id) { document.getElementById('ov-' + id).classList.remove('open'); }
+document.querySelectorAll('.overlay').forEach(ov => {
+  ov.addEventListener('click', e => { if (e.target === ov) ov.classList.remove('open'); });
+});
+</script>
+</body>
+</html>
