@@ -1,0 +1,96 @@
+import telebot
+import mysql.connector
+
+# --- CONFIGURACIÓN ---
+BOT_TOKEN = '8280312111:AAHhjrK7rbXZDUAzqyxAZHl7xHvANo_In3g'
+ADMIN_CHAT_ID = '1067169552'
+
+# --- CONFIGURACIÓN BASE DE DATOS MOODLE ---
+DB_CONFIG = {
+    'host': 'localhost',
+    'user': 'moodle15diciembre_user',
+    'password': 'Kalvo33_',
+    'database': 'moodle15diciembre_db'
+}
+
+# --- INICIAR BOT ---
+bot = telebot.TeleBot(BOT_TOKEN)
+
+# --- COMANDO /start ---
+@bot.message_handler(commands=['start'])
+def send_welcome(message):
+    bot.reply_to(message, "🤖 ¡Bot de Moodle activo!\nUsa /consulta para ver los usuarios.")
+
+# --- COMANDO /consulta ---
+@bot.message_handler(commands=['consulta'])
+def handle_consulta(message):
+    # Verificar que solo tú puedas usarlo
+    if str(message.chat.id) != ADMIN_CHAT_ID:
+        bot.reply_to(message, "⛔ No tienes permiso para usar este comando.")
+        return
+
+    bot.send_message(message.chat.id, "🔄 Consultando base de datos...")
+
+    try:
+        conexion = mysql.connector.connect(**DB_CONFIG)
+        cursor = conexion.cursor()
+
+        # Consulta: lista de usuarios
+        cursor.execute("SELECT id, username, firstname, lastname, email FROM mdl_user WHERE deleted = 0 LIMIT 15;")
+        resultados = cursor.fetchall()
+
+        if resultados:
+            respuesta = "📋 *USUARIOS DE MOODLE*\n\n"
+            for user in resultados:
+                respuesta += f"🆔 ID: {user[0]}\n"
+                respuesta += f"👤 Usuario: {user[1]}\n"
+                respuesta += f"📛 Nombre: {user[2]} {user[3]}\n"
+                respuesta += f"📧 Email: {user[4]}\n"
+                respuesta += "━━━━━━━━━━━━━━━\n"
+        else:
+            respuesta = "No hay usuarios en la base de datos."
+
+        bot.send_message(message.chat.id, respuesta, parse_mode='Markdown')
+
+    except Exception as e:
+        bot.send_message(message.chat.id, f"❌ Error: {str(e)}")
+    finally:
+        if conexion.is_connected():
+            cursor.close()
+            conexion.close()
+
+# --- COMANDO /cursos ---
+@bot.message_handler(commands=['cursos'])
+def handle_cursos(message):
+    if str(message.chat.id) != ADMIN_CHAT_ID:
+        bot.reply_to(message, "⛔ No tienes permiso.")
+        return
+
+    try:
+        conexion = mysql.connector.connect(**DB_CONFIG)
+        cursor = conexion.cursor()
+        cursor.execute("SELECT id, fullname, shortname FROM mdl_course WHERE visible = 1;")
+        resultados = cursor.fetchall()
+
+        if resultados:
+            respuesta = "📚 *CURSOS ACTIVOS EN MOODLE*\n\n"
+            for curso in resultados:
+                respuesta += f"📖 {curso[1]}\n"
+                respuesta += f"   🏷️  {curso[2]}\n"
+                respuesta += f"   🆔 ID: {curso[0]}\n━━━━━━━━━━\n"
+        else:
+            respuesta = "No hay cursos activos."
+
+        bot.send_message(message.chat.id, respuesta, parse_mode='Markdown')
+
+    except Exception as e:
+        bot.send_message(message.chat.id, f"❌ Error: {str(e)}")
+
+    finally:
+        if conexion.is_connected():
+            cursor.close()
+            conexion.close()
+
+# --- INICIAR EL BOT ---
+print("✅ Bot de Moodle funcionando...")
+bot.infinity_polling(
